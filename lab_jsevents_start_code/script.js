@@ -6,29 +6,42 @@ const toDoList = document.querySelector("#list");
 const dateButton = document.querySelector("#date");
 const dateDisplay = document.querySelector("#date-display");
 
-button.addEventListener("click", (event) => {
+// deletes parent node element
+const deleteParentNode = (element) => {
+    console.log("parent node deleted");
+    toDoList.removeChild(element.parentNode);
+};
 
-    const newToDo = document.createElement("li");
-    newToDo.innerText = input.value;
+// creates delete button and adds event listener
+const createDeleteButton = () => {
 
-    // Delete button
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.setAttribute("style", "margin-left: 0.5em");
 
-    toDoList.appendChild(newToDo);
-    newToDo.appendChild(deleteButton);
-
-// Defining a function inside a function
-// Could abstract line 26/27
     deleteButton.addEventListener("click", (event) => {
+        // deletes list item when delete button is clicked 
         console.log("delete button pressed");
-        toDoList.removeChild(deleteButton.parentNode);
+        deleteParentNode(deleteButton);
     });
+
+    return deleteButton;  
+}
+
+// creates new list item when enter button is clicked
+button.addEventListener("click", (event) => {
+
+    const newToDo = document.createElement("li");
+    newToDo.innerText = input.value;
+    newToDo.appendChild(createDeleteButton());
+    
+    toDoList.appendChild(newToDo);
 });
 
+// displays date when button clicked
 dateButton.addEventListener("click", (event) => {
+
     dateDisplay.innerText = Date();
     dateDisplay.setAttribute("style", "margin: 16px 0");
-    console.log(dateDisplay.DOCUMENT_NODE);
+
 })
