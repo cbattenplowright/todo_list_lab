@@ -3,6 +3,8 @@
 const input = document.querySelector("#new-todo");
 const button = document.querySelector("#enter");
 const toDoList = document.querySelector("#list");
+const dateButton = document.querySelector("#date");
+const dateDisplay = document.querySelector("#date-display");
 
 button.addEventListener("click", (event) => {
 
@@ -23,7 +25,10 @@ button.addEventListener("click", (event) => {
         console.log("delete button pressed");
         toDoList.removeChild(deleteButton.parentNode);
     });
-
-    console.log(newToDo);
-    console.log(toDoList);
 });
+
+dateButton.addEventListener("click", (event) => {
+    dateDisplay.innerText = Date();
+    dateDisplay.setAttribute("style", "margin: 16px 0");
+    console.log(dateDisplay.DOCUMENT_NODE);
+})
